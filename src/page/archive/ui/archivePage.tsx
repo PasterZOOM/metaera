@@ -3,6 +3,7 @@ import type { FC } from 'react'
 import { Accordion, Pagination, Table, Text } from '@mantine/core'
 
 import { BidStatus } from '@/widgets/bidStatus'
+import { QuickPassage } from '@/widgets/quickPassage'
 import { TaxablePeriod } from '@/widgets/taxablePeriod'
 
 export const ArchivePage: FC = () => {
@@ -22,9 +23,9 @@ export const ArchivePage: FC = () => {
           <Accordion.Panel>
             <BidStatus />
             <TaxablePeriod />
-            <div>Тип документа</div>
+            <TaxablePeriod />
             <div>Период</div>
-            <div>Быстрый переход</div>
+            <QuickPassage />
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>
