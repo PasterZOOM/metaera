@@ -1,11 +1,8 @@
 import type { FC } from 'react'
 
-import { Accordion, Pagination, Table, Text } from '@mantine/core'
+import { Pagination, Table, Text } from '@mantine/core'
 
-import { Period } from '@/widgets/ period'
-import { BidStatus } from '@/widgets/bidStatus'
-import { QuickPassage } from '@/widgets/quickPassage'
-import { TaxablePeriod } from '@/widgets/taxablePeriod'
+import { Filters } from '@/widgets/filters'
 
 export const ArchivePage: FC = () => {
   return (
@@ -13,23 +10,8 @@ export const ArchivePage: FC = () => {
       <Text component="h1" fw={700} size="xl">
         Архив заявок
       </Text>
-      <Accordion
-        styles={{
-          content: { display: 'flex', flexWrap: 'wrap', gap: '0.5rem 1.5rem', width: '100%' },
-          control: { display: 'flex', gap: '1rem', width: 'fit-content' },
-        }}
-      >
-        <Accordion.Item value="filter">
-          <Accordion.Control bg="transparent">Фильтр</Accordion.Control>
-          <Accordion.Panel>
-            <BidStatus />
-            <TaxablePeriod />
-            <TaxablePeriod />
-            <Period />
-            <QuickPassage />
-          </Accordion.Panel>
-        </Accordion.Item>
-      </Accordion>
+
+      <Filters />
 
       <Table>
         <Table.Thead>

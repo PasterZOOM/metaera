@@ -15,7 +15,7 @@ const data = [
   { label: 'Исходящий', value: DocType.OUT },
 ]
 
-export const TaxablePeriod: FC = () => {
+export const DocumentType: FC = () => {
   const [value, setValue] = useState<DocType | null>(null)
 
   return (
