@@ -3,6 +3,7 @@ import type { FC } from 'react'
 import { Accordion, Pagination, Table, Text } from '@mantine/core'
 
 import { BidStatus } from '@/widgets/bidStatus'
+import { TaxablePeriod } from '@/widgets/taxablePeriod'
 
 export const ArchivePage: FC = () => {
   return (
@@ -10,12 +11,17 @@ export const ArchivePage: FC = () => {
       <Text component="h1" fw={700} size="xl">
         Архив заявок
       </Text>
-      <Accordion>
-        <Accordion.Item value="item-1">
-          <Accordion.Control>Фильтр</Accordion.Control>
+      <Accordion
+        styles={{
+          content: { display: 'flex', gap: '1.5rem', width: '100%' },
+          control: { display: 'flex', gap: '1rem', width: 'fit-content' },
+        }}
+      >
+        <Accordion.Item value="filter">
+          <Accordion.Control bg="transparent">Фильтр</Accordion.Control>
           <Accordion.Panel>
             <BidStatus />
-            <div>Налоговый период</div>
+            <TaxablePeriod />
             <div>Тип документа</div>
             <div>Период</div>
             <div>Быстрый переход</div>
