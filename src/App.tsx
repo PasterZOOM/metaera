@@ -1,11 +1,16 @@
 import type { FC } from 'react'
 
 import { MantineProvider } from '@mantine/core'
-// eslint-disable-next-line import/no-unresolved
 import '@mantine/core/styles.css'
 
+import { ArchivePage } from '@/page/archive'
+
 const App: FC = () => {
-  return <MantineProvider>Hello world</MantineProvider>
+  return (
+    <MantineProvider>
+      <ArchivePage />
+    </MantineProvider>
+  )
 }
 
 export default App

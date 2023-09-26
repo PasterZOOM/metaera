@@ -27,9 +27,7 @@ module.exports = {
     'boundaries'],
   settings: {
     'import/resolver': {
-      'node': {
-        'extensions': ['.js', '.jsx', '.ts', '.tsx'],
-      },
+      'typescript': {}
     },
     'boundaries/elements': [
       {
@@ -318,10 +316,6 @@ module.exports = {
           '**/*.config.{ts,tsx}',
         ],
       },
-    ],
-    'import/no-unresolved': [
-      'error',
-      { 'caseSensitive': false },
     ],
     'simple-import-sort/exports': 'error',
     'react/require-default-props': 'off',

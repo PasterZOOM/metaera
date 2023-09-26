@@ -11,12 +11,13 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@mantine/core": "^7.0.1",
-    "@mantine/hooks": "^7.0.1",
+    "@mantine/core": "^7.0.2",
+    "@mantine/hooks": "^7.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/node": "20.7.0",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
@@ -25,6 +26,8 @@
     "eslint": "^8.50.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-node": "^0.3.9",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-boundaries": "^3.4.0",
     "eslint-plugin-i18next": "^6.0.3",
     "eslint-plugin-prettier": "^5.0.0",
@@ -34,7 +37,7 @@
     "eslint-plugin-sort-destructure-keys": "^1.5.0",
     "eslint-plugin-sort-keys": "^2.3.5",
     "eslint-plugin-typescript-sort-keys": "^3.0.0",
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "postcss": "^8.4.30",
     "postcss-preset-mantine": "^1.7.0",
