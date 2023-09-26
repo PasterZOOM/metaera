@@ -2,17 +2,19 @@ import type { FC } from 'react'
 
 import { Accordion, Pagination, Table, Text } from '@mantine/core'
 
+import { BidStatus } from '@/widgets/bidStatus'
+
 export const ArchivePage: FC = () => {
   return (
     <div>
       <Text component="h1" fw={700} size="xl">
         Архив заявок
       </Text>
-      <Accordion chevronPosition="right" variant="contained">
+      <Accordion>
         <Accordion.Item value="item-1">
-          <Accordion.Control>Control</Accordion.Control>
+          <Accordion.Control>Фильтр</Accordion.Control>
           <Accordion.Panel>
-            <div>Статус заявки</div>
+            <BidStatus />
             <div>Налоговый период</div>
             <div>Тип документа</div>
             <div>Период</div>
