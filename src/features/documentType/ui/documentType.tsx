@@ -1,26 +1,31 @@
-import { useState } from 'react'
 import type { FC } from 'react'
 
 import { Select } from '@mantine/core'
 
 import { FilterWrapper } from '@/shared/ui/filterWrapper'
 
-enum DocType {
-  IN = 'IN',
-  OUT = 'OUT',
-}
+import { DOCUMENT_TYPE } from '../module/consts'
 
 const data = [
-  { label: 'Входящий', value: DocType.IN },
-  { label: 'Исходящий', value: DocType.OUT },
+  { label: 'Входящий', value: DOCUMENT_TYPE.IN },
+  { label: 'Исходящий', value: DOCUMENT_TYPE.OUT },
 ]
 
-export const DocumentType: FC = () => {
-  const [value, setValue] = useState<DocType | null>(null)
+type Props = {
+  changeDocumentType: (documentType: DOCUMENT_TYPE | null) => void
+  documentType: DOCUMENT_TYPE | null
+}
+
+export const DocumentType: FC<Props> = props => {
+  const { changeDocumentType, documentType } = props
 
   return (
     <FilterWrapper title="Тип документа">
-      <Select data={data} value={value} onChange={newValue => setValue(newValue as DocType)} />
+      <Select
+        data={data}
+        value={documentType}
+        onChange={newValue => changeDocumentType(newValue as DOCUMENT_TYPE)}
+      />
     </FilterWrapper>
   )
 }

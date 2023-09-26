@@ -6,7 +6,7 @@ import '@mantine/dates/styles.css'
 
 import { ArchivePage } from '@/page/archive'
 
-const App: FC = () => {
+export const App: FC = () => {
   return (
     <MantineProvider>
       <ArchivePage />

@@ -1,0 +1,8 @@
+export enum TAXABLE_PERIOD {
+  MONTH = 'PERIOD_MONTH',
+  Q1 = 'PERIOD_Q1',
+  Q2 = 'PERIOD_Q2',
+  Q3 = 'PERIOD_Q3',
+  Q4 = 'PERIOD_Q4',
+  YEAR = 'PERIOD_YEAR',
+}
