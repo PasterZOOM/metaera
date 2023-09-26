@@ -1,7 +1,7 @@
-import { useId } from 'react'
 import type { FC } from 'react'
+import { useId } from 'react'
 
-import { Button, Group } from '@mantine/core'
+import { Button } from '@mantine/core'
 
 import { FilterWrapper } from '@/shared/ui/filterWrapper'
 
@@ -15,13 +15,11 @@ export const QuickPassage: FC = () => {
   const id = useId()
   return (
     <FilterWrapper title="Быстрый переход">
-      <Group gap="sm" wrap="wrap">
-        {data.map(status => (
-          <Button key={`${id}-${status.value}`} variant="default">
-            {status.label}
-          </Button>
-        ))}
-      </Group>
+      {data.map(status => (
+        <Button key={`${id}-${status.value}`} variant="default">
+          {status.label}
+        </Button>
+      ))}
     </FilterWrapper>
   )
 }

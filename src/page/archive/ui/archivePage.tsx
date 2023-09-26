@@ -2,6 +2,7 @@ import type { FC } from 'react'
 
 import { Accordion, Pagination, Table, Text } from '@mantine/core'
 
+import { Period } from '@/widgets/ period'
 import { BidStatus } from '@/widgets/bidStatus'
 import { QuickPassage } from '@/widgets/quickPassage'
 import { TaxablePeriod } from '@/widgets/taxablePeriod'
@@ -14,7 +15,7 @@ export const ArchivePage: FC = () => {
       </Text>
       <Accordion
         styles={{
-          content: { display: 'flex', gap: '1.5rem', width: '100%' },
+          content: { display: 'flex', flexWrap: 'wrap', gap: '0.5rem 1.5rem', width: '100%' },
           control: { display: 'flex', gap: '1rem', width: 'fit-content' },
         }}
       >
@@ -24,7 +25,7 @@ export const ArchivePage: FC = () => {
             <BidStatus />
             <TaxablePeriod />
             <TaxablePeriod />
-            <div>Период</div>
+            <Period />
             <QuickPassage />
           </Accordion.Panel>
         </Accordion.Item>

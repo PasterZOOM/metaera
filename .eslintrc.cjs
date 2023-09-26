@@ -27,7 +27,7 @@ module.exports = {
     'boundaries'],
   settings: {
     'import/resolver': {
-      'typescript': {}
+      'typescript': {},
     },
     'boundaries/elements': [
       {
@@ -323,10 +323,6 @@ module.exports = {
       'error',
       {
         'html': 'ignore',
-        'exceptions': [
-          'Link',
-          'Component',
-        ],
       },
     ],
     'react/jsx-sort-props': [
@@ -382,4 +378,12 @@ module.exports = {
     'sort-keys': 'off',
     'sort-keys/sort-keys-fix': 'error',
   },
+  overrides: [
+    {
+      'files': ['src/shared/ui/**/*.tsx'],
+      'rules': {
+        'react/jsx-props-no-spreading': 'off',
+      },
+    },
+  ],
 }

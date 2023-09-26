@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { useId, useState } from 'react'
 
-import { Button, Group } from '@mantine/core'
+import { Button } from '@mantine/core'
 
 import { FilterWrapper } from '@/shared/ui/filterWrapper'
 
@@ -28,17 +28,15 @@ export const BidStatus: FC = () => {
 
   return (
     <FilterWrapper title="Статус заявки">
-      <Group gap="sm" wrap="wrap">
-        {data.map(status => (
-          <Button
-            key={`${id}-${status.value}`}
-            variant={activeStatus[status.value] ? undefined : 'default'}
-            onClick={() => onclickHandler(status.value)}
-          >
-            {status.label}
-          </Button>
-        ))}
-      </Group>
+      {data.map(status => (
+        <Button
+          key={`${id}-${status.value}`}
+          variant={activeStatus[status.value] ? undefined : 'default'}
+          onClick={() => onclickHandler(status.value)}
+        >
+          {status.label}
+        </Button>
+      ))}
     </FilterWrapper>
   )
 }
