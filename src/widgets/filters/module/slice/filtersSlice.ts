@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import type { ProcessingStatus } from '@/features/bidStatus'
 import type { DOCUMENT_TYPE } from '@/features/documentType'
 import type { TAXABLE_PERIOD } from '@/features/taxablePeriod'
 
@@ -13,7 +14,7 @@ enum Sort { // TODO: перенести в таблицы
 }
 
 type FilterStateType = {
-  bidStatuses: Record<string, boolean>
+  bidStatuses: ProcessingStatus
   documentType: DOCUMENT_TYPE | null
   page: number
   pageCount: number

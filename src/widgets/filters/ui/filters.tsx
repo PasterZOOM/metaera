@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 import { filtersActions } from '@/widgets/filters'
 
+import type { ProcessingStatus } from '@/features/bidStatus'
 import { BidStatus } from '@/features/bidStatus'
 import type { DOCUMENT_TYPE } from '@/features/documentType'
 import { DocumentType } from '@/features/documentType'
@@ -32,7 +33,7 @@ export const Filters: FC = () => {
   const periodFrom = useSelector(getPeriodFrom)
   const periodTo = useSelector(getPeriodTo)
 
-  const changeBidStatuses = (statuses: Record<string, boolean>): void => {
+  const changeBidStatuses = (statuses: ProcessingStatus): void => {
     dispatch(filtersActions.changeFilter({ bidStatuses: statuses }))
   }
   const changeTaxablePeriod = (period: TAXABLE_PERIOD | null): void => {
@@ -67,7 +68,7 @@ export const Filters: FC = () => {
             periodFrom={periodFrom}
             periodTo={periodTo}
           />
-          <QuickPassage />
+          <QuickPassage changePeriodFrom={changePeriodFrom} changePeriodTo={changePeriodTo} />
         </Accordion.Panel>
       </Accordion.Item>
     </Accordion>

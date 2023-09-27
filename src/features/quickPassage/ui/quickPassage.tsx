@@ -11,8 +11,14 @@ const data = [
   { label: 'Месяц', value: '' },
 ]
 
-export const QuickPassage: FC = () => {
+type Props = {
+  changePeriodFrom: (periodFrom: Date | null) => void
+  changePeriodTo: (periodTo: Date | null) => void
+}
+
+export const QuickPassage: FC<Props> = () => {
   const id = useId()
+
   return (
     <FilterWrapper title="Быстрый переход">
       {data.map(status => (

@@ -3,6 +3,8 @@ import { useId } from 'react'
 
 import { Button } from '@mantine/core'
 
+import type { ProcessingStatus } from '@/features/bidStatus'
+
 import { FilterWrapper } from '@/shared/ui/filterWrapper'
 
 import { PROCESSING_STATUS } from '../module/consts.ts'
@@ -14,15 +16,15 @@ const data = [
 ]
 
 type Props = {
-  bidStatuses: Record<string, boolean>
-  changeBidStatuses: (bidStatuses: Record<string, boolean>) => void
+  bidStatuses: ProcessingStatus
+  changeBidStatuses: (bidStatuses: ProcessingStatus) => void
 }
 
 export const BidStatus: FC<Props> = props => {
   const { bidStatuses, changeBidStatuses } = props
   const id = useId()
 
-  const onclickHandler = (value: string): void => {
+  const onclickHandler = (value: PROCESSING_STATUS): void => {
     changeBidStatuses({ ...bidStatuses, [value]: !bidStatuses[value] })
   }
 

@@ -1,3 +1,3 @@
-export { App } from './app'
-export type { AppDispatch, RootState } from './providers/storeProvider/store'
-export { store } from './providers/storeProvider/store'
+export { appRouter } from './providers/appRouter'
+export type { AppDispatch, RootState } from './providers/store'
+export { store } from './providers/store'

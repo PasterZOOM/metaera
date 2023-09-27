@@ -187,6 +187,7 @@ module.exports = {
           {
             'from': 'app',
             'allow': [
+              'app',
               'processes',
               'pages',
               'widgets',
