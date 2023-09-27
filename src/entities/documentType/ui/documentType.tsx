@@ -22,7 +22,9 @@ export const DocumentType: FC<Props> = props => {
   return (
     <FilterWrapper title="Тип документа">
       <Select
+        clearable
         data={data}
+        placeholder="Выберите тип документа"
         value={documentType}
         onChange={newValue => changeDocumentType(newValue as DOCUMENT_TYPE)}
       />

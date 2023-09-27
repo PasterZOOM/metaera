@@ -33,19 +33,19 @@ export const Filters: FC = () => {
   const periodTo = useSelector(getPeriodTo)
 
   const changeBidStatuses = (statuses: ProcessingStatus): void => {
-    dispatch(filtersActions.changeFilter({ bidStatuses: statuses }))
+    dispatch(filtersActions.changeFilter({ bidStatuses: statuses, page: 1 }))
   }
   const changeTaxablePeriod = (period: TAXABLE_PERIOD | null): void => {
-    dispatch(filtersActions.changeFilter({ taxablePeriod: period }))
+    dispatch(filtersActions.changeFilter({ page: 1, taxablePeriod: period }))
   }
   const changeDocumentType = (type: DOCUMENT_TYPE | null): void => {
-    dispatch(filtersActions.changeFilter({ documentType: type }))
+    dispatch(filtersActions.changeFilter({ documentType: type, page: 1 }))
   }
   const changePeriodFrom = (period: Date | null): void => {
-    dispatch(filtersActions.changeFilter({ periodFrom: period }))
+    dispatch(filtersActions.changeFilter({ page: 1, periodFrom: period }))
   }
   const changePeriodTo = (period: Date | null): void => {
-    dispatch(filtersActions.changeFilter({ periodTo: period }))
+    dispatch(filtersActions.changeFilter({ page: 1, periodTo: period }))
   }
 
   return (

@@ -29,7 +29,7 @@ export const ArchivePage: FC = () => {
   const sort = useSelector(getSort)
 
   const changeSort = (newSort: SORT | null): void => {
-    dispatch(filtersActions.changeFilter({ sort: newSort }))
+    dispatch(filtersActions.changeFilter({ page: 1, sort: newSort }))
   }
 
   return (
