@@ -1,18 +1,12 @@
 import type { FC } from 'react'
 
-import { Pagination, Table, Text } from '@mantine/core'
+import { Table } from '@mantine/core'
 
-import { Filters } from '@/features/filters'
+import { MainLayout } from '@/widgets/mainLayout'
 
 export const ArchivePage: FC = () => {
   return (
-    <div>
-      <Text component="h1" fw={700} size="xl">
-        Архив заявок
-      </Text>
-
-      <Filters />
-
+    <MainLayout title="Архив заявки">
       <Table>
         <Table.Thead>
           <Table.Tr>
@@ -33,11 +27,9 @@ export const ArchivePage: FC = () => {
             <Table.Td>входящий</Table.Td>
             <Table.Td>Месяц</Table.Td>
             <Table.Td>ИП Иванов И.И.</Table.Td>
-            <Table.Td> </Table.Td>
           </Table.Tr>
         </Table.Tbody>
       </Table>
-      <Pagination withEdges total={1} />
-    </div>
+    </MainLayout>
   )
 }
