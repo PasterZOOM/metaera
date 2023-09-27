@@ -6,9 +6,9 @@ import { Button } from '@mantine/core'
 import { FilterWrapper } from '@/shared/ui/filterWrapper'
 
 const data = [
-  { label: 'Сегодня', value: '' },
-  { label: 'Неделя', value: '' },
-  { label: 'Месяц', value: '' },
+  { label: 'Сегодня', value: '1' },
+  { label: 'Неделя', value: '2' },
+  { label: 'Месяц', value: '3' },
 ]
 
 type Props = {

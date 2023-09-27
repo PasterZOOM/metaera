@@ -2,25 +2,21 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import type { ProcessingStatus } from '@/entities/bidStatus'
 import type { DOCUMENT_TYPE } from '@/entities/documentType'
+import type { SORT } from '@/entities/tableHeader'
 import type { TAXABLE_PERIOD } from '@/entities/taxablePeriod'
 
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 const PAGE_COUNTS = 30 // TODO: вынести в enum, перенести в пагинацию
 
-enum Sort { // TODO: перенести в таблицы
-  DATE_ASC = 'date_asc',
-  DATE_DESC = 'date_desc',
-}
-
-type FilterStateType = {
+export type FilterStateType = {
   bidStatuses: ProcessingStatus
   documentType: DOCUMENT_TYPE | null
   page: number
   pageCount: number
   periodFrom: Date | null
   periodTo: Date | null
-  sort: Sort | null
+  sort: SORT | null
   taxablePeriod: TAXABLE_PERIOD | null
 }
 
