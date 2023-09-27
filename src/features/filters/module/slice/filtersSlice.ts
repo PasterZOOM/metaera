@@ -13,7 +13,7 @@ export type FilterStateType = {
   bidStatuses: ProcessingStatus
   documentType: DOCUMENT_TYPE | null
   page: number
-  pageCount: number
+  pageSize: number
   periodFrom: Date | null
   periodTo: Date | null
   sort: SORT | null
@@ -24,7 +24,7 @@ const initialState: FilterStateType = {
   bidStatuses: {},
   documentType: null,
   page: 1,
-  pageCount: PAGE_COUNTS,
+  pageSize: PAGE_COUNTS,
   periodFrom: null,
   periodTo: null,
   sort: null,

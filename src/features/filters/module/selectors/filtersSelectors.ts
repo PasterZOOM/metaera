@@ -14,4 +14,4 @@ export const getTaxablePeriod = (state: RootState): TAXABLE_PERIOD | null =>
   state.filters.taxablePeriod
 export const getSort = (state: RootState): SORT | null => state.filters.sort
 export const getPage = (state: RootState): number => state.filters.page
-export const getPageCount = (state: RootState): number => state.filters.pageCount
+export const getPageSize = (state: RootState): number => state.filters.pageSize

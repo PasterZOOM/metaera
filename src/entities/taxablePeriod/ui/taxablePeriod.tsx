@@ -26,7 +26,9 @@ export const TaxablePeriod: FC<Props> = props => {
   return (
     <FilterWrapper title="Налоговый период">
       <Select
+        clearable
         data={data}
+        placeholder="Выберите период"
         value={taxablePeriod}
         onChange={newValue => changeTaxablePeriod(newValue as TAXABLE_PERIOD)}
       />
