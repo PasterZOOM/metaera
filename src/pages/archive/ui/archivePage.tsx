@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import { Pagination, Table, Text } from '@mantine/core'
 
-import { Filters } from '@/widgets/filters'
+import { Filters } from '@/features/filters'
 
 export const ArchivePage: FC = () => {
   return (

@@ -3,16 +3,14 @@ import type { FC } from 'react'
 import { Accordion } from '@mantine/core'
 import { useSelector } from 'react-redux'
 
-import { filtersActions } from '@/widgets/filters'
-
-import type { ProcessingStatus } from '@/features/bidStatus'
-import { BidStatus } from '@/features/bidStatus'
-import type { DOCUMENT_TYPE } from '@/features/documentType'
-import { DocumentType } from '@/features/documentType'
-import { Period } from '@/features/period'
-import { QuickPassage } from '@/features/quickPassage'
-import type { TAXABLE_PERIOD } from '@/features/taxablePeriod'
-import { TaxablePeriod } from '@/features/taxablePeriod'
+import type { ProcessingStatus } from '@/entities/bidStatus'
+import { BidStatus } from '@/entities/bidStatus'
+import type { DOCUMENT_TYPE } from '@/entities/documentType'
+import { DocumentType } from '@/entities/documentType'
+import { Period } from '@/entities/period'
+import { QuickPassage } from '@/entities/quickPassage'
+import type { TAXABLE_PERIOD } from '@/entities/taxablePeriod'
+import { TaxablePeriod } from '@/entities/taxablePeriod'
 
 import { useAppDispatch } from '@/shared/lib/hooks'
 
@@ -23,6 +21,7 @@ import {
   getPeriodTo,
   getTaxablePeriod,
 } from '../module/selectors/filtersSelectors'
+import { filtersActions } from '../module/slice/filtersSlice'
 
 export const Filters: FC = () => {
   const dispatch = useAppDispatch()

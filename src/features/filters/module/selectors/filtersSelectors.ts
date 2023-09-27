@@ -1,6 +1,6 @@
-import type { ProcessingStatus } from '@/features/bidStatus'
-import type { DOCUMENT_TYPE } from '@/features/documentType'
-import type { TAXABLE_PERIOD } from '@/features/taxablePeriod'
+import type { ProcessingStatus } from '@/entities/bidStatus'
+import type { DOCUMENT_TYPE } from '@/entities/documentType'
+import type { TAXABLE_PERIOD } from '@/entities/taxablePeriod'
 
 import type { RootState } from '@/app'
 

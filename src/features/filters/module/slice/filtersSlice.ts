@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import type { ProcessingStatus } from '@/features/bidStatus'
-import type { DOCUMENT_TYPE } from '@/features/documentType'
-import type { TAXABLE_PERIOD } from '@/features/taxablePeriod'
+import type { ProcessingStatus } from '@/entities/bidStatus'
+import type { DOCUMENT_TYPE } from '@/entities/documentType'
+import type { TAXABLE_PERIOD } from '@/entities/taxablePeriod'
 
 import type { PayloadAction } from '@reduxjs/toolkit'
 
@@ -41,6 +41,9 @@ const filtersSlice = createSlice({
   reducers: {
     changeFilter: (state, action: PayloadAction<Partial<FilterStateType>>) => {
       return { ...state, ...action.payload }
+    },
+    clear: () => {
+      return initialState
     },
   },
 })

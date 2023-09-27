@@ -3,11 +3,11 @@ import { useId } from 'react'
 
 import { Button } from '@mantine/core'
 
-import type { ProcessingStatus } from '@/features/bidStatus'
-
 import { FilterWrapper } from '@/shared/ui/filterWrapper'
 
 import { PROCESSING_STATUS } from '../module/consts.ts'
+
+import type { ProcessingStatus } from '../module/types.ts'
 
 const data = [
   { label: 'В обработке', value: PROCESSING_STATUS.IN_PROCESS },

@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom'
+import { Box, Button } from '@mantine/core'
+import { isRouteErrorResponse, useRouteError, NavLink } from 'react-router-dom'
 
 import { RESPONSE_STATUS } from '@/shared/consts/responseStatus.ts'
 
@@ -15,7 +16,16 @@ export const ErrorPage: FC = () => {
     }
 
     return (
-      <div id="error-page">
+      <Box
+        id="error-page"
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100vh',
+          justifyContent: 'center',
+        }}
+      >
         <h1>Oops! {error.status}</h1>
         <p>{error.statusText}</p>
         {error.data?.message && (
@@ -23,7 +33,10 @@ export const ErrorPage: FC = () => {
             <i>{error.data.message}</i>
           </p>
         )}
-      </div>
+        <NavLink to="/">
+          <Button>На главную</Button>
+        </NavLink>
+      </Box>
     )
   }
   if (error instanceof Error) {
