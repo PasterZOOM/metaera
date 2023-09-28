@@ -1,10 +1,10 @@
 import type { DOCUMENT_TYPE } from '@/entities/documentType'
-import type { ProcessingStatus } from '@/entities/recordStatus'
+import type { RECORD_STATUS } from '@/entities/recordStatus'
 import type { TAX_PERIOD } from '@/entities/taxPeriod'
 
 import type { RootState } from '@/app'
 
-export const getRecordStatus = (state: RootState): ProcessingStatus =>
+export const getRecordStatus = (state: RootState): RECORD_STATUS | null =>
   state.archive.filters.record_status
 export const getDocumentType = (state: RootState): DOCUMENT_TYPE | null =>
   state.archive.filters.document_type

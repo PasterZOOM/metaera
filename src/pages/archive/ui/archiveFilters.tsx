@@ -6,7 +6,7 @@ import type { DOCUMENT_TYPE } from '@/entities/documentType'
 import { DocumentType } from '@/entities/documentType'
 import { Period } from '@/entities/period'
 import { QuickPassage } from '@/entities/quickPassage'
-import type { ProcessingStatus } from '@/entities/recordStatus'
+import type { RECORD_STATUS } from '@/entities/recordStatus'
 import { RecordStatus } from '@/entities/recordStatus'
 import type { TAX_PERIOD } from '@/entities/taxPeriod'
 import { TaxPeriod } from '@/entities/taxPeriod'
@@ -32,7 +32,7 @@ export const ArchiveFilters: FC = () => {
   const firstRequestDate = useSelector(getFirstRequestDate)
   const lastRequestDate = useSelector(getLastRequestDate)
 
-  const changeRecordStatus = (statuses: ProcessingStatus): void => {
+  const changeRecordStatus = (statuses: RECORD_STATUS | null): void => {
     dispatch(archiveActions.changeFilter({ first_record: 1, record_status: statuses }))
   }
   const changeTaxPeriod = (period: TAX_PERIOD | null): void => {

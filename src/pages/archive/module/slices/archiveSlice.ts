@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { DOCUMENT_TYPE } from '@/entities/documentType'
-import type { ProcessingStatus } from '@/entities/recordStatus'
 import { RECORD_STATUS } from '@/entities/recordStatus'
 import { TAX_PERIOD } from '@/entities/taxPeriod'
 
@@ -14,7 +13,7 @@ export type ArchiveFilters = {
   first_record: number
   first_request_date: Date | null
   last_request_date: Date | null
-  record_status: ProcessingStatus
+  record_status: RECORD_STATUS | null
   sort: string | null
   tax_period: TAX_PERIOD | null
 }
@@ -28,7 +27,7 @@ const initialState: ArchiveStateType = {
     first_record: 1,
     first_request_date: null,
     last_request_date: null,
-    record_status: {},
+    record_status: null,
     sort: null,
     tax_period: null,
   },

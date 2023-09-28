@@ -7,8 +7,6 @@ import { FilterWrapper } from '@/shared/ui/filterWrapper'
 
 import { RECORD_STATUS } from '../module/consts'
 
-import type { ProcessingStatus } from '../module/types'
-
 const data = [
   { label: 'В обработке', value: RECORD_STATUS.IN_PROCESS },
   { label: 'Обработана', value: RECORD_STATUS.FINISHED },
@@ -16,8 +14,8 @@ const data = [
 ]
 
 type Props = {
-  changeRecordStatus: (bidStatuses: ProcessingStatus) => void
-  recordStatus: ProcessingStatus
+  changeRecordStatus: (bidStatuses: RECORD_STATUS | null) => void
+  recordStatus: RECORD_STATUS | null
 }
 
 export const RecordStatus: FC<Props> = props => {
@@ -25,7 +23,7 @@ export const RecordStatus: FC<Props> = props => {
   const id = useId()
 
   const onclickHandler = (value: RECORD_STATUS): void => {
-    changeRecordStatus({ ...recordStatus, [value]: !recordStatus[value] })
+    changeRecordStatus(value === recordStatus ? null : value)
   }
 
   return (
@@ -33,7 +31,7 @@ export const RecordStatus: FC<Props> = props => {
       {data.map(status => (
         <Button
           key={`${id}-${status.value}`}
-          variant={recordStatus[status.value] ? undefined : 'default'}
+          variant={status.value === recordStatus ? undefined : 'default'}
           onClick={() => onclickHandler(status.value)}
         >
           {status.label}
