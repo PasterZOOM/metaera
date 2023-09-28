@@ -1,5 +1,7 @@
 import type { FC } from 'react'
 
+import dayjs from 'dayjs'
+
 import { DataPicker } from '@/shared/ui/dataPicker'
 import { FilterWrapper } from '@/shared/ui/filterWrapper'
 
@@ -15,8 +17,19 @@ export const Period: FC<Props> = props => {
 
   return (
     <FilterWrapper title="Период">
-      <DataPicker label="c" value={periodFrom} onChange={changePeriodFrom} />
-      <DataPicker label="по" value={periodTo} onChange={changePeriodTo} />
+      <DataPicker
+        label="c"
+        maxDate={periodTo ?? dayjs().toDate()}
+        value={periodFrom}
+        onChange={changePeriodFrom}
+      />
+      <DataPicker
+        label="по"
+        maxDate={dayjs().toDate()}
+        minDate={periodFrom ?? undefined}
+        value={periodTo}
+        onChange={changePeriodTo}
+      />
     </FilterWrapper>
   )
 }

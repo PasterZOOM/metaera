@@ -13,8 +13,10 @@ export const DataPicker = forwardRef<ForwardedRef<HTMLButtonElement>, DatePicker
     return (
       <DatePickerInput
         {...props}
+        clearable
         leftSection={icon}
         leftSectionPointerEvents="none"
+        valueFormat="DD.MM.YYYY"
         styles={{
           input: { minWidth: '9.5rem' },
           root: { alignItems: 'center', display: 'flex', gap: '0.625rem' },
