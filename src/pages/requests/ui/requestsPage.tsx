@@ -9,52 +9,49 @@ import { TableHeader } from '@/entities/tableHeader'
 
 import { useAppDispatch } from '@/shared/lib/hooks'
 
-import { archiveRecordMapper } from '../module/lib/archiveMapper'
-import { getArchive } from '../module/selectors/archiveSelectors'
+import { requestsMapper } from '../module/lib/requestMapper'
 import { getCount, getFirstRecord, getSort } from '../module/selectors/filtersSelectors'
-import { archiveActions } from '../module/slices/archiveSlice'
+import { getRequests } from '../module/selectors/requestsSelectors'
+import { recordsActions } from '../module/slices/requestsSlice.ts'
 
-import { ArchiveFilters } from './archiveFilters.tsx'
+import { ArchiveFilters } from './requestsFilters.tsx'
 
 const columns = [
-  { direction: 'document_date', label: 'Дата' },
-  { direction: 'record_status', label: 'Статус' },
-  { direction: 'document_number', label: 'Номер' },
-  { direction: 'document_type', label: 'Тип документа' },
-  { direction: 'tax_period', label: 'Налоговый период' },
-  { direction: 'organization_name', label: 'Название организации' },
+  { direction: 'date', label: 'Дата' },
+  { direction: 'comment', label: 'Комментарий' },
+  { direction: 'bidStatus', label: 'Статус обработки заявки' },
 ]
 
-export const ArchivePage: FC = () => {
+export const RequestsPage: FC = () => {
   const dispatch = useAppDispatch()
 
-  const records = useSelector(getArchive).map(record => archiveRecordMapper(record))
+  const requests = useSelector(getRequests).map(record => requestsMapper(record))
 
-  const totalItems = records.length
+  const totalItems = requests.length
 
   const sort = useSelector(getSort)
   const firstRecord = useSelector(getFirstRecord)
   const count = useSelector(getCount)
 
   const changeSort = (newSort: string | null): void => {
-    dispatch(archiveActions.changeFilter({ first_record: 1, sort: newSort }))
+    dispatch(recordsActions.changeFilter({ first_record: 1, sort: newSort }))
   }
   const changeCount = (newCount: number): void => {
-    dispatch(archiveActions.changeFilter({ count: newCount, first_record: 1 }))
+    dispatch(recordsActions.changeFilter({ count: newCount, first_record: 1 }))
   }
   const changeFirstRecord = (value: number): void => {
-    dispatch(archiveActions.changeFilter({ first_record: value }))
+    dispatch(recordsActions.changeFilter({ first_record: value }))
   }
 
   return (
     <Box>
       <Text component="h1" fw={700} size="xl">
-        Архив заявки
+        Журнал заявки
       </Text>
       <ArchiveFilters />
       <Table>
         <TableHeader changeSort={changeSort} columns={columns} sort={sort} />
-        <TableBody rows={records} />
+        <TableBody rows={requests} />
       </Table>
       {!!totalItems && (
         <AppPagination

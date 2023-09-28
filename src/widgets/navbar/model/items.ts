@@ -6,6 +6,6 @@ export interface SidebarItemType {
 }
 
 export const navbarItems: SidebarItemType[] = [
-  { label: 'Журнал заявок', path: RoutePath.orders },
+  { label: 'Журнал заявок', path: RoutePath.records },
   { label: 'Архив заявок', path: RoutePath.archive },
 ]

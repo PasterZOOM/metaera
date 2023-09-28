@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import { filtersReducer } from '@/features/filters'
+import { archiveReducer } from '@/pages/archive'
+import { requestsReducer } from '@/pages/requests'
 
 export const store = configureStore({
   reducer: {
-    filters: filtersReducer,
+    archive: archiveReducer,
+    requests: requestsReducer,
   },
 })
 

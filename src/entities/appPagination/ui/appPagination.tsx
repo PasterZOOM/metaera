@@ -28,7 +28,7 @@ export const AppPagination: FC<Props> = props => {
           data={data}
           placeholder="Выберите период"
           value={`${pageSize}`}
-          onChange={newValue => changePageSize(newValue ? +newValue : +data[0])}
+          onChange={newValue => changePageSize(+newValue!)}
         />
       </Flex>
     </Flex>

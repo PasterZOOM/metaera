@@ -13,18 +13,18 @@ const data = [
 ]
 
 type Props = {
-  changePeriodFrom: (periodFrom: Date | null) => void
-  changePeriodTo: (periodTo: Date | null) => void
+  changeFirstRequestDate: (periodFrom: Date | null) => void
+  changeLastRequestDate: (periodTo: Date | null) => void
 }
 
 export const QuickPassage: FC<Props> = props => {
-  const { changePeriodFrom, changePeriodTo } = props
+  const { changeFirstRequestDate, changeLastRequestDate } = props
 
   const id = useId()
 
   const setDate = (from: Date | null, to: Date | null): void => {
-    changePeriodFrom(from)
-    changePeriodTo(to)
+    changeFirstRequestDate(from)
+    changeLastRequestDate(to)
   }
 
   return (

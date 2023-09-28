@@ -1,23 +1,23 @@
-import type { SORT } from '@/entities/tableHeader'
-
-export const sortParse = (sort: SORT | null): { direction: string | null; key: string | null } => {
+export const sortParse = (
+  sort: string | null,
+): { direction: string | null; key: string | null } => {
   if (sort) {
-    const [direction, key] = sort.split('_')
+    const [direction, key] = sort.split('-')
     return { direction, key }
   }
 
   return { direction: null, key: null }
 }
-export const sortStringify = (direction: string | null, key: string | null): SORT | null => {
+export const sortStringify = (direction: string | null, key: string | null): string | null => {
   switch (key) {
     case 'asc': {
-      return `${direction}_desc` as SORT
+      return `${direction}-desc`
     }
     case 'desc': {
       return null
     }
     default: {
-      return `${direction}_asc` as SORT
+      return `${direction}-asc`
     }
   }
 }

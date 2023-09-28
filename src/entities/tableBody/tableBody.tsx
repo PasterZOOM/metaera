@@ -3,19 +3,24 @@ import type { FC } from 'react'
 import { Table } from '@mantine/core'
 
 type Props = {
-  columns: string[]
+  rows: { id: string; row: string[] }[]
 }
 
 export const TableBody: FC<Props> = props => {
-  const { columns } = props
+  const { rows } = props
 
   return (
     <Table.Tbody>
-      <Table.Tr>
-        {columns.map(col => (
-          <Table.Td key={col}>{col}</Table.Td>
-        ))}
-      </Table.Tr>
+      {rows.map(
+        row =>
+          row && (
+            <Table.Tr key={row.id}>
+              {row.row.map(col => (
+                <Table.Td key={row.id + col}>{col}</Table.Td>
+              ))}
+            </Table.Tr>
+          ),
+      )}
     </Table.Tbody>
   )
 }

@@ -82,6 +82,7 @@ module.exports = {
       },
     ],
     'no-shadow': 'off',
+    'no-param-reassign': ['error', { 'props': true, 'ignorePropertyModificationsFor': ['state'] }],
     'no-restricted-imports': [
       'error',
       {

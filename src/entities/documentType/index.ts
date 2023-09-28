@@ -1,2 +1,2 @@
-export { DOCUMENT_TYPE } from './module/consts'
+export { DOCUMENT_TYPE, documentTypeDictionary } from './module/consts'
 export { DocumentType } from './ui/documentType'

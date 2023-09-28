@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import { ArchivePage } from '@/pages/archive'
 import { ErrorPage } from '@/pages/error'
-import { OrdersPage } from '@/pages/orders'
+import { RequestsPage } from '@/pages/requests'
 
 import { RoutePath } from '@/shared/config/routerConfig'
 
@@ -12,8 +12,8 @@ export const appRouter = createBrowserRouter([
   {
     children: [
       {
-        element: <OrdersPage />,
-        path: RoutePath.orders,
+        element: <RequestsPage />,
+        path: RoutePath.records,
       },
       {
         element: <ArchivePage />,

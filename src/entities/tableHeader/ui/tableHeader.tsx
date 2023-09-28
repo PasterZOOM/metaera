@@ -5,12 +5,10 @@ import { IconArrowDown, IconReload } from '@tabler/icons-react'
 
 import { sortParse, sortStringify } from '../module/helpers'
 
-import type { SORT } from '../module/consts'
-
 type Props = {
-  changeSort: (sort: SORT | null) => void
+  changeSort: (sort: string | null) => void
   columns: { direction: string | null; label: string }[]
-  sort: SORT | null
+  sort: string | null
 }
 
 export const TableHeader: FC<Props> = props => {
