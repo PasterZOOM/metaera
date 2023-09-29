@@ -14,8 +14,8 @@ const data = [
 ]
 
 type Props = {
-  changeRecordStatus: (bidStatuses: RECORD_STATUS | null) => void
-  recordStatus: RECORD_STATUS | null
+  changeRecordStatus: (bidStatuses?: RECORD_STATUS) => void
+  recordStatus?: RECORD_STATUS
 }
 
 export const RecordStatus: FC<Props> = props => {
@@ -23,7 +23,7 @@ export const RecordStatus: FC<Props> = props => {
   const id = useId()
 
   const onclickHandler = (value: RECORD_STATUS): void => {
-    changeRecordStatus(value === recordStatus ? null : value)
+    changeRecordStatus(value === recordStatus ? undefined : value)
   }
 
   return (

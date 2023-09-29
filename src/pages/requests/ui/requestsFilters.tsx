@@ -26,16 +26,16 @@ export const ArchiveFilters: FC = () => {
   const requestComment = useSelector(getRequestComment)
   const requestProcessed = useSelector(getRequestProcessed)
 
-  const changeFirstRequestDate = (period: Date | null): void => {
+  const changeFirstRequestDate = (period?: Date): void => {
     dispatch(recordsActions.changeFilter({ first_record: 1, first_request_date: period }))
   }
-  const changeLastRequestDate = (period: Date | null): void => {
+  const changeLastRequestDate = (period?: Date): void => {
     dispatch(recordsActions.changeFilter({ first_record: 1, last_request_date: period }))
   }
-  const changeRequestComment = (comment: string | null): void => {
+  const changeRequestComment = (comment?: string): void => {
     dispatch(recordsActions.changeFilter({ first_record: 1, request_comment: comment }))
   }
-  const changeRequestProcessed = (processed: boolean | null): void => {
+  const changeRequestProcessed = (processed?: boolean): void => {
     dispatch(recordsActions.changeFilter({ first_record: 1, request_processed: processed }))
   }
 

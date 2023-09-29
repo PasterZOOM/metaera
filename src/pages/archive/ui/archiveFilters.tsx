@@ -32,19 +32,19 @@ export const ArchiveFilters: FC = () => {
   const firstRequestDate = useSelector(getFirstRequestDate)
   const lastRequestDate = useSelector(getLastRequestDate)
 
-  const changeRecordStatus = (statuses: RECORD_STATUS | null): void => {
+  const changeRecordStatus = (statuses?: RECORD_STATUS): void => {
     dispatch(archiveActions.changeFilter({ first_record: 1, record_status: statuses }))
   }
-  const changeTaxPeriod = (period: TAX_PERIOD | null): void => {
+  const changeTaxPeriod = (period?: TAX_PERIOD): void => {
     dispatch(archiveActions.changeFilter({ first_record: 1, tax_period: period }))
   }
-  const changeDocumentType = (type: DOCUMENT_TYPE | null): void => {
+  const changeDocumentType = (type?: DOCUMENT_TYPE): void => {
     dispatch(archiveActions.changeFilter({ document_type: type, first_record: 1 }))
   }
-  const changeFirstRequestDate = (period: Date | null): void => {
+  const changeFirstRequestDate = (period?: Date): void => {
     dispatch(archiveActions.changeFilter({ first_record: 1, first_request_date: period }))
   }
-  const changeLastRequestDate = (period: Date | null): void => {
+  const changeLastRequestDate = (period?: Date): void => {
     dispatch(archiveActions.changeFilter({ first_record: 1, last_request_date: period }))
   }
 

@@ -6,9 +6,9 @@ import { IconArrowDown, IconReload } from '@tabler/icons-react'
 import { sortParse, sortStringify } from '../module/helpers'
 
 type Props = {
-  changeSort: (sort: string | null) => void
-  columns: { direction: string | null; label: string }[]
-  sort: string | null
+  changeSort: (sort?: string) => void
+  columns: { direction?: string; label: string }[]
+  sort?: string
 }
 
 export const TableHeader: FC<Props> = props => {
@@ -16,10 +16,10 @@ export const TableHeader: FC<Props> = props => {
 
   const activeSort = sortParse(sort)
 
-  const onSort = (direction: string | null): void => {
+  const onSort = (direction?: string): void => {
     let { key } = activeSort
     if (activeSort.direction !== direction) {
-      key = null
+      key = undefined
     }
     const newSort = sortStringify(direction, key)
     changeSort(newSort)

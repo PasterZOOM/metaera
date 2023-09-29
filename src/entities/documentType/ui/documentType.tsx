@@ -12,8 +12,8 @@ const data = [
 ]
 
 type Props = {
-  changeDocumentType: (documentType: DOCUMENT_TYPE | null) => void
-  documentType: DOCUMENT_TYPE | null
+  changeDocumentType: (documentType?: DOCUMENT_TYPE) => void
+  documentType?: DOCUMENT_TYPE
 }
 
 export const DocumentType: FC<Props> = props => {
@@ -25,8 +25,8 @@ export const DocumentType: FC<Props> = props => {
         clearable
         data={data}
         placeholder="Выберите тип документа"
-        value={documentType}
-        onChange={newValue => changeDocumentType(newValue as DOCUMENT_TYPE)}
+        value={documentType || null}
+        onChange={newValue => changeDocumentType((newValue as DOCUMENT_TYPE) || undefined)}
       />
     </FilterWrapper>
   )

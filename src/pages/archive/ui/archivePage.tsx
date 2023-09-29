@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { Box, Table, Title } from '@mantine/core'
+import { Box, Table, Title, Loader } from '@mantine/core'
 import { useSelector } from 'react-redux'
 
 import { AppPagination } from '@/entities/appPagination'
@@ -9,9 +9,8 @@ import { TableHeader } from '@/entities/tableHeader'
 
 import { useAppDispatch } from '@/shared/lib/hooks'
 
-import { archiveRecordMapper } from '../module/lib/archiveMapper'
-import { getArchive } from '../module/selectors/archiveSelectors'
-import { getCount, getFirstRecord, getSort } from '../module/selectors/filtersSelectors'
+import { useGetArchiveQuery } from '../module/api/archiveAPI'
+import { getFilters } from '../module/selectors/filtersSelectors'
 import { archiveActions } from '../module/slices/archiveSlice'
 
 import { ArchiveFilters } from './archiveFilters'
@@ -29,41 +28,50 @@ const columns = [
 export const ArchivePage: FC = () => {
   const dispatch = useAppDispatch()
 
-  const records = useSelector(getArchive).map(record => archiveRecordMapper(record))
+  const filters = useSelector(getFilters)
 
-  const totalItems = records.length
+  const { data: records, isError, isLoading } = useGetArchiveQuery(filters)
 
-  const sort = useSelector(getSort)
-  const firstRecord = useSelector(getFirstRecord)
-  const count = useSelector(getCount)
-
-  const changeSort = (newSort: string | null): void => {
-    dispatch(archiveActions.changeFilter({ first_record: 1, sort: newSort }))
-  }
-  const changeCount = (newCount: number): void => {
-    dispatch(archiveActions.changeFilter({ count: newCount, first_record: 1 }))
-  }
-  const changeFirstRecord = (value: number): void => {
-    dispatch(archiveActions.changeFilter({ first_record: value }))
+  if (isLoading) {
+    return <Loader />
   }
 
-  return (
-    <Box>
-      <Title order={1}>Архив заявки</Title>
-      <ArchiveFilters />
-      <Table>
-        <TableHeader changeSort={changeSort} columns={columns} sort={sort} />
-        <TableBody modalBody={DetailModalBody} modalTitle="Запись" rows={records} />
-      </Table>
-      {!!totalItems && (
-        <AppPagination
-          changePage={changeFirstRecord}
-          changePageSize={changeCount}
-          page={firstRecord}
-          pageSize={count}
-          totalItems={totalItems}
-        />
-      )}
-    </Box>
-  )
+  if (isError) {
+    return <Box>Ошибка</Box>
+  }
+
+  if (records) {
+    const totalItems = records.length
+
+    const changeSort = (newSort?: string): void => {
+      dispatch(archiveActions.changeFilter({ first_record: 1, sort: newSort }))
+    }
+    const changeCount = (newCount?: number): void => {
+      dispatch(archiveActions.changeFilter({ count: newCount, first_record: 1 }))
+    }
+    const changeFirstRecord = (value?: number): void => {
+      dispatch(archiveActions.changeFilter({ first_record: value }))
+    }
+
+    return (
+      <Box>
+        <Title order={1}>Архив заявки</Title>
+        <ArchiveFilters />
+        <Table>
+          <TableHeader changeSort={changeSort} columns={columns} sort={filters.sort} />
+          <TableBody modalBody={DetailModalBody} modalTitle="Запись" rows={records} />
+        </Table>
+        {!!totalItems && (
+          <AppPagination
+            changePage={changeFirstRecord}
+            changePageSize={changeCount}
+            page={filters.first_record}
+            pageSize={filters.count}
+            totalItems={totalItems}
+          />
+        )}
+      </Box>
+    )
+  }
+  return null
 }

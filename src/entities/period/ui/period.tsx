@@ -6,10 +6,10 @@ import { DataPicker } from '@/shared/ui/dataPicker'
 import { FilterWrapper } from '@/shared/ui/filterWrapper'
 
 type Props = {
-  changeFirstRequestDate: (periodFrom: Date | null) => void
-  changeLastRequestDate: (periodTo: Date | null) => void
-  firstRequestDate: Date | null
-  lastRequestDate: Date | null
+  changeFirstRequestDate: (periodFrom?: Date) => void
+  changeLastRequestDate: (periodTo?: Date) => void
+  firstRequestDate?: Date
+  lastRequestDate?: Date
 }
 
 export const Period: FC<Props> = props => {
@@ -20,15 +20,15 @@ export const Period: FC<Props> = props => {
       <DataPicker
         label="c"
         maxDate={lastRequestDate ?? dayjs().toDate()}
-        value={firstRequestDate}
-        onChange={changeFirstRequestDate}
+        value={firstRequestDate ?? null}
+        onChange={date => changeFirstRequestDate(date || undefined)}
       />
       <DataPicker
         label="по"
         maxDate={dayjs().toDate()}
         minDate={firstRequestDate ?? undefined}
-        value={lastRequestDate}
-        onChange={changeLastRequestDate}
+        value={lastRequestDate ?? null}
+        onChange={date => changeLastRequestDate(date || undefined)}
       />
     </FilterWrapper>
   )

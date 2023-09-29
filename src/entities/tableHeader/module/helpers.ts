@@ -1,20 +1,17 @@
-export const sortParse = (
-  sort: string | null,
-): { direction: string | null; key: string | null } => {
+export const sortParse = (sort?: string): Partial<{ direction: string; key: string }> => {
   if (sort) {
     const [direction, key] = sort.split('-')
     return { direction, key }
   }
-
-  return { direction: null, key: null }
+  return {}
 }
-export const sortStringify = (direction: string | null, key: string | null): string | null => {
+export const sortStringify = (direction?: string, key?: string): string | undefined => {
   switch (key) {
     case 'asc': {
       return `${direction}-desc`
     }
     case 'desc': {
-      return null
+      return undefined
     }
     default: {
       return `${direction}-asc`

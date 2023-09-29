@@ -10,8 +10,8 @@ const data = [
 ]
 
 type Props = {
-  changeRequestProcessed: (period: boolean | null) => void
-  requestProcessed: boolean | null
+  changeRequestProcessed: (period?: boolean) => void
+  requestProcessed?: boolean
 }
 
 export const RequestProcessed: FC<Props> = props => {
@@ -26,7 +26,7 @@ export const RequestProcessed: FC<Props> = props => {
         return changeRequestProcessed(false)
       }
       default: {
-        return changeRequestProcessed(null)
+        return changeRequestProcessed()
       }
     }
   }
@@ -37,7 +37,7 @@ export const RequestProcessed: FC<Props> = props => {
         clearable
         data={data}
         placeholder="Выберите период"
-        value={requestProcessed ? requestProcessed.toString() : undefined}
+        value={typeof requestProcessed === 'boolean' ? requestProcessed.toString() : null}
         onChange={changeHandler}
       />
     </FilterWrapper>

@@ -6,15 +6,15 @@ import { IconSearch } from '@tabler/icons-react'
 import { FilterWrapper } from '@/shared/ui/filterWrapper'
 
 type Props = {
-  changeRequestComment: (value: string | null) => void
-  requestComment: string | null
+  changeRequestComment: (value?: string) => void
+  requestComment?: string
 }
 
 export const CommentSearch: FC<Props> = props => {
   const { changeRequestComment, requestComment } = props
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
-    changeRequestComment(e.currentTarget.value || null)
+    changeRequestComment(e.currentTarget.value || undefined)
   }
 
   return (
@@ -28,7 +28,7 @@ export const CommentSearch: FC<Props> = props => {
           <CloseButton
             aria-label="Clear input"
             style={{ display: requestComment ? undefined : 'none' }}
-            onClick={() => changeRequestComment(null)}
+            onClick={() => changeRequestComment()}
           />
         }
         onChange={changeHandler}

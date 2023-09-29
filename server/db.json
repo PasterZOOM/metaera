@@ -1,0 +1,52 @@
+{
+  "archive": [
+    {
+      "document_date": "2019-05-03",
+      "document_number": "ВС-1123445",
+      "document_presentation": "Счет на оплату",
+      "document_presentation_guid": "asdas-qeqweq-12asd",
+      "document_type": "IN",
+      "files": [
+        {
+          "file_name": "downloads/dickpic.jpg",
+          "file_presentation": "Первая страница счета"
+        },
+        {
+          "file_name": "downloads/dickpic.pdf",
+          "file_presentation": "Первая страница счета"
+        },
+        {
+          "file_name": "downloads/dickpic.docx",
+          "file_presentation": "Первая страница счета"
+        }
+      ],
+      "organization_guid": "ИП Иванов А.А.",
+      "organization_name": "asdasd-zxzxc-adasd",
+      "record_comment": "сначала рыбу ел на этой бумажке",
+      "record_date": "2022-01-03",
+      "record_status": "FINISHED",
+      "record_status_comment": "",
+      "request_guid": "qweq-asdasd-zxczxc",
+      "tax_period": "PERIOD_Q1",
+      "tax_period_end_date": "2022-30-03"
+    }
+  ],
+  "requests": [
+    {
+      "files": [
+        {
+          "file_data": "UIASDOACZXCAPASDASDKKDA==",
+          "file_name": "downloads/dickpic.jpg"
+        },
+        {
+          "file_data": "QWEADDSACSDFXVXVSDASD==",
+          "file_name": "pic.png"
+        }
+      ],
+      "request_comment": "bla-bla-bla",
+      "request_date": "2022-01-02",
+      "request_guid": "qweq-asdasd-zxczxc",
+      "request_processed": false
+    }
+  ]
+}

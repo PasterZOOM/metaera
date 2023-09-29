@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { Box, Table, Title } from '@mantine/core'
+import { Box, Loader, Table, Title } from '@mantine/core'
 import { useSelector } from 'react-redux'
 
 import { AppPagination } from '@/entities/appPagination'
@@ -9,9 +9,8 @@ import { TableHeader } from '@/entities/tableHeader'
 
 import { useAppDispatch } from '@/shared/lib/hooks'
 
-import { requestsMapper } from '../module/lib/requestMapper'
-import { getCount, getFirstRecord, getSort } from '../module/selectors/filtersSelectors'
-import { getRequests } from '../module/selectors/requestsSelectors'
+import { useGetRequestsQuery } from '../module/api/requestsAPI.ts'
+import { getFilters } from '../module/selectors/filtersSelectors'
 import { recordsActions } from '../module/slices/requestsSlice.ts'
 
 import { DetailModalBody } from './detailModalBody'
@@ -26,41 +25,50 @@ const columns = [
 export const RequestsPage: FC = () => {
   const dispatch = useAppDispatch()
 
-  const requests = useSelector(getRequests).map(record => requestsMapper(record))
+  const filters = useSelector(getFilters)
 
-  const totalItems = requests.length
+  const { data: requests, isError, isLoading } = useGetRequestsQuery(filters)
 
-  const sort = useSelector(getSort)
-  const firstRecord = useSelector(getFirstRecord)
-  const count = useSelector(getCount)
-
-  const changeSort = (newSort: string | null): void => {
-    dispatch(recordsActions.changeFilter({ first_record: 1, sort: newSort }))
-  }
-  const changeCount = (newCount: number): void => {
-    dispatch(recordsActions.changeFilter({ count: newCount, first_record: 1 }))
-  }
-  const changeFirstRecord = (value: number): void => {
-    dispatch(recordsActions.changeFilter({ first_record: value }))
+  if (isLoading) {
+    return <Loader />
   }
 
-  return (
-    <Box>
-      <Title order={1}>Журнал заявки</Title>
-      <ArchiveFilters />
-      <Table>
-        <TableHeader changeSort={changeSort} columns={columns} sort={sort} />
-        <TableBody modalBody={DetailModalBody} modalTitle="Заявка" rows={requests} />
-      </Table>
-      {!!totalItems && (
-        <AppPagination
-          changePage={changeFirstRecord}
-          changePageSize={changeCount}
-          page={firstRecord}
-          pageSize={count}
-          totalItems={totalItems}
-        />
-      )}
-    </Box>
-  )
+  if (isError) {
+    return <Box>Ошибка</Box>
+  }
+
+  if (requests) {
+    const totalItems = requests.length
+
+    const changeSort = (newSort?: string): void => {
+      dispatch(recordsActions.changeFilter({ first_record: 1, sort: newSort }))
+    }
+    const changeCount = (newCount?: number): void => {
+      dispatch(recordsActions.changeFilter({ count: newCount, first_record: 1 }))
+    }
+    const changeFirstRecord = (value?: number): void => {
+      dispatch(recordsActions.changeFilter({ first_record: value }))
+    }
+
+    return (
+      <Box>
+        <Title order={1}>Журнал заявки</Title>
+        <ArchiveFilters />
+        <Table>
+          <TableHeader changeSort={changeSort} columns={columns} sort={filters.sort} />
+          <TableBody modalBody={DetailModalBody} modalTitle="Заявка" rows={requests} />
+        </Table>
+        {!!totalItems && (
+          <AppPagination
+            changePage={changeFirstRecord}
+            changePageSize={changeCount}
+            page={filters.first_record}
+            pageSize={filters.count}
+            totalItems={totalItems}
+          />
+        )}
+      </Box>
+    )
+  }
+  return null
 }

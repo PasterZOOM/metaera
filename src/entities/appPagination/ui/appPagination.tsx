@@ -6,8 +6,8 @@ import { Flex, Pagination, Select } from '@mantine/core'
 const data = ['30', '50', '100']
 
 type Props = {
-  changePage: (value: number) => void
-  changePageSize: (value: number) => void
+  changePage: (value?: number) => void
+  changePageSize: (value?: number) => void
   page: number
   pageSize: number
   totalItems: number

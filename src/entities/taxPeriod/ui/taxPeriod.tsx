@@ -16,8 +16,8 @@ const data = [
 ]
 
 type Props = {
-  changeTaxPeriod: (period: TAX_PERIOD | null) => void
-  taxPeriod: TAX_PERIOD | null
+  changeTaxPeriod: (period?: TAX_PERIOD) => void
+  taxPeriod?: TAX_PERIOD
 }
 
 export const TaxPeriod: FC<Props> = props => {
@@ -29,8 +29,8 @@ export const TaxPeriod: FC<Props> = props => {
         clearable
         data={data}
         placeholder="Выберите период"
-        value={taxPeriod}
-        onChange={newValue => changeTaxPeriod(newValue as TAX_PERIOD)}
+        value={taxPeriod ?? null}
+        onChange={newValue => changeTaxPeriod((newValue as TAX_PERIOD) || undefined)}
       />
     </FilterWrapper>
   )
