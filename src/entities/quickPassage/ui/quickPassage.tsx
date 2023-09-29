@@ -32,7 +32,8 @@ export const QuickPassage: FC<Props> = props => {
       {data.map(period => (
         <Button
           key={`${id}-${period.value}`}
-          variant="default"
+          color="orange"
+          variant="outline"
           onClick={() => setDate(period.from, period.to)}
         >
           {period.label}

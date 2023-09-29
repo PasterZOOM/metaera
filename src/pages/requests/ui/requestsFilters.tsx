@@ -26,10 +26,10 @@ export const ArchiveFilters: FC = () => {
   const requestComment = useSelector(getRequestComment)
   const requestProcessed = useSelector(getRequestProcessed)
 
-  const changePeriodFrom = (period: Date | null): void => {
+  const changeFirstRequestDate = (period: Date | null): void => {
     dispatch(recordsActions.changeFilter({ first_record: 1, first_request_date: period }))
   }
-  const changePeriodTo = (period: Date | null): void => {
+  const changeLastRequestDate = (period: Date | null): void => {
     dispatch(recordsActions.changeFilter({ first_record: 1, last_request_date: period }))
   }
   const changeRequestComment = (comment: string | null): void => {
@@ -47,14 +47,14 @@ export const ArchiveFilters: FC = () => {
         requestProcessed={requestProcessed}
       />
       <Period
-        changeFirstRequestDate={changePeriodFrom}
-        changeLastRequestDate={changePeriodTo}
+        changeFirstRequestDate={changeFirstRequestDate}
+        changeLastRequestDate={changeLastRequestDate}
         firstRequestDate={firstRequestDate}
         lastRequestDate={lastRequestDate}
       />
       <QuickPassage
-        changeFirstRequestDate={changePeriodFrom}
-        changeLastRequestDate={changePeriodTo}
+        changeFirstRequestDate={changeFirstRequestDate}
+        changeLastRequestDate={changeLastRequestDate}
       />
     </AppAccordion>
   )

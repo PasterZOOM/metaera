@@ -31,7 +31,7 @@ export const RecordStatus: FC<Props> = props => {
       {data.map(status => (
         <Button
           key={`${id}-${status.value}`}
-          variant={status.value === recordStatus ? undefined : 'default'}
+          variant={status.value === recordStatus ? undefined : 'outline'}
           onClick={() => onclickHandler(status.value)}
         >
           {status.label}

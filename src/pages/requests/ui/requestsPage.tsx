@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { Box, Table, Text } from '@mantine/core'
+import { Box, Table, Title } from '@mantine/core'
 import { useSelector } from 'react-redux'
 
 import { AppPagination } from '@/entities/appPagination'
@@ -14,6 +14,7 @@ import { getCount, getFirstRecord, getSort } from '../module/selectors/filtersSe
 import { getRequests } from '../module/selectors/requestsSelectors'
 import { recordsActions } from '../module/slices/requestsSlice.ts'
 
+import { DetailModalBody } from './detailModalBody'
 import { ArchiveFilters } from './requestsFilters.tsx'
 
 const columns = [
@@ -45,13 +46,11 @@ export const RequestsPage: FC = () => {
 
   return (
     <Box>
-      <Text component="h1" fw={700} size="xl">
-        Журнал заявки
-      </Text>
+      <Title order={1}>Журнал заявки</Title>
       <ArchiveFilters />
       <Table>
         <TableHeader changeSort={changeSort} columns={columns} sort={sort} />
-        <TableBody rows={requests} />
+        <TableBody modalBody={DetailModalBody} modalTitle="Заявка" rows={requests} />
       </Table>
       {!!totalItems && (
         <AppPagination

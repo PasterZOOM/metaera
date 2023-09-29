@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { Box, Table, Text } from '@mantine/core'
+import { Box, Table, Title } from '@mantine/core'
 import { useSelector } from 'react-redux'
 
 import { AppPagination } from '@/entities/appPagination'
@@ -14,7 +14,8 @@ import { getArchive } from '../module/selectors/archiveSelectors'
 import { getCount, getFirstRecord, getSort } from '../module/selectors/filtersSelectors'
 import { archiveActions } from '../module/slices/archiveSlice'
 
-import { ArchiveFilters } from './archiveFilters.tsx'
+import { ArchiveFilters } from './archiveFilters'
+import { DetailModalBody } from './detailModalBody'
 
 const columns = [
   { direction: 'document_date', label: 'Дата' },
@@ -48,13 +49,11 @@ export const ArchivePage: FC = () => {
 
   return (
     <Box>
-      <Text component="h1" fw={700} size="xl">
-        Архив заявки
-      </Text>
+      <Title order={1}>Архив заявки</Title>
       <ArchiveFilters />
       <Table>
         <TableHeader changeSort={changeSort} columns={columns} sort={sort} />
-        <TableBody rows={records} />
+        <TableBody modalBody={DetailModalBody} modalTitle="Запись" rows={records} />
       </Table>
       {!!totalItems && (
         <AppPagination

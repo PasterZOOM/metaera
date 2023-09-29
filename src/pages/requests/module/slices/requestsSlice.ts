@@ -30,7 +30,7 @@ const initialState: RecordsStateType = {
       files: [
         {
           file_data: 'UIASDOACZXCAPASDASDKKDA==',
-          file_name: 'dickpic.jpg',
+          file_name: 'downloads/dickpic.jpg',
         },
         {
           file_data: 'QWEADDSACSDFXVXVSDASD==',

@@ -43,6 +43,14 @@ const initialState: ArchiveStateType = {
           file_name: 'downloads/dickpic.jpg',
           file_presentation: 'Первая страница счета',
         },
+        {
+          file_name: 'downloads/dickpic.pdf',
+          file_presentation: 'Первая страница счета',
+        },
+        {
+          file_name: 'downloads/dickpic.docx',
+          file_presentation: 'Первая страница счета',
+        },
       ],
       organization_guid: 'ИП Иванов А.А.',
       organization_name: 'asdasd-zxzxc-adasd',
