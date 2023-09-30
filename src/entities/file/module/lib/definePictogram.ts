@@ -4,7 +4,7 @@ export const definePictogram = (href: string): string => {
   const file = (/([^/|\\]+)\.\w+$/.exec(href) ?? [''])[0].toLowerCase()
   const fileExtension = file.split('.').pop() || ''
 
-  if (images.includes(fileExtension)) {
+  if (images.includes(fileExtension) || href.includes('data:image/jpeg;base64')) {
     return href
   }
   if (knownFileExtensions.includes(fileExtension)) {

@@ -34,7 +34,7 @@ export const DetailModalBody: FC<RecordType> = props => {
       </Flex>
       <Flex gap="md" mb="2rem">
         {files.map(file => (
-          <File href={file.file_name} />
+          <File data={file.file_presentation} name={file.file_name} />
         ))}
       </Flex>
 

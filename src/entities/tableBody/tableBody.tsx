@@ -1,17 +1,17 @@
-import type { ReactNode } from 'react'
+import type { FC, ReactNode } from 'react'
 import { useState } from 'react'
 
 import { Modal, Table } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 
 type Props<T> = {
-  modalBody: (viewElement: T) => ReactNode
+  modalBody: FC<T>
   modalTitle: string
   rows: { id: string; item: T; row: string[] }[]
 }
 
-export const TableBody = <T,>(props: Props<T>): ReactNode => {
-  const { modalBody, modalTitle, rows } = props
+export const TableBody = <T extends NonNullable<unknown>>(props: Props<T>): ReactNode => {
+  const { modalBody: ModalBody, modalTitle, rows } = props
 
   const [opened, { close, open }] = useDisclosure(false)
 
@@ -20,7 +20,8 @@ export const TableBody = <T,>(props: Props<T>): ReactNode => {
   return (
     <>
       <Modal opened={opened} size="100%" title={modalTitle} onClose={close}>
-        {modalBody(viewElement)}
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <ModalBody {...viewElement} />
       </Modal>
       <Table.Tbody>
         {rows.map(
