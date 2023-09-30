@@ -1,0 +1,5 @@
+{
+  "/api/*": "/$1",
+  "/requests/:request_guid": "/requests?request_guid=:request_guid",
+  "/archive/:request_guid": "/archive?request_guid=:request_guid"
+}

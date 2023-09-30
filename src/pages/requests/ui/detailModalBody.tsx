@@ -11,12 +11,16 @@ import { fileTitleCount } from '@/shared/lib/helpers'
 import { DownloadFilesButton } from '@/shared/ui/downloadFilesButton'
 import { AppDropzone } from '@/shared/ui/dropzone'
 
+import { useUpdateRequestMutation } from '../module/api/requestsAPI'
+
 import type { RequestType } from '../module/types/requestType'
 import type { FileWithPath } from '@mantine/dropzone'
 
 export const DetailModalBody: FC<RequestType> = props => {
   const [editMode, { close: off, open: on }] = useDisclosure(false)
   const [editedData, setEditedData] = useState(props)
+
+  const [update] = useUpdateRequestMutation()
 
   useEffect(() => {
     setEditedData(props)
@@ -30,6 +34,7 @@ export const DetailModalBody: FC<RequestType> = props => {
     off()
   }
   const save = (): void => {
+    update(editedData)
     off()
   }
   const removeFile = (data: string): void => {

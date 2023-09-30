@@ -13,6 +13,7 @@ export const requestsApi = createApi({
   endpoints: builder => ({
     getRequests: builder.query<{ id: string; item: RequestType; row: string[] }[], RequestsFilters>(
       {
+        providesTags: ['Requests'],
         query: ({ first_request_date, last_request_date, ...params }) => ({
           params: {
             ...requestDateFormat(first_request_date, last_request_date),
@@ -25,8 +26,23 @@ export const requestsApi = createApi({
         },
       },
     ),
+    updateRequest: builder.mutation<
+      { id: string; item: RequestType; row: string[] }[],
+      Partial<RequestType>
+    >({
+      invalidatesTags: ['Requests'],
+      query: ({ request_guid, ...body }) => ({
+        body,
+        method: 'PATCH',
+        url: `${ENDPOINTS.REQUESTS}/${request_guid}`,
+      }),
+      transformResponse: (response: RequestType[]) => {
+        return response.map(request => requestsMapper(request))
+      },
+    }),
   }),
   reducerPath: 'requestsApi',
+  tagTypes: ['Requests'],
 })
 
-export const { useGetRequestsQuery } = requestsApi
+export const { useGetRequestsQuery, useUpdateRequestMutation } = requestsApi
