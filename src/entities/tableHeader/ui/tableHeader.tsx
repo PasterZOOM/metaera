@@ -8,11 +8,12 @@ import { sortParse, sortStringify } from '../module/helpers'
 type Props = {
   changeSort: (sort?: string) => void
   columns: { direction?: string; label: string }[]
+  refetch: () => void
   sort?: string
 }
 
 export const TableHeader: FC<Props> = props => {
-  const { changeSort, columns, sort } = props
+  const { changeSort, columns, refetch, sort } = props
 
   const activeSort = sortParse(sort)
 
@@ -33,13 +34,13 @@ export const TableHeader: FC<Props> = props => {
             <span>{col.label}</span>
             {activeSort.direction === col.direction &&
               (activeSort.key === 'asc' ? (
-                <IconArrowDown style={{ position: 'absolute' }} />
-              ) : (
                 <IconArrowDown style={{ position: 'absolute', transform: 'rotate(180deg)' }} />
+              ) : (
+                <IconArrowDown style={{ position: 'absolute' }} />
               ))}
           </Table.Th>
         ))}
-        <Table.Th>
+        <Table.Th styles={{ th: { cursor: 'pointer' } }} onClick={refetch}>
           <span>Обновить</span>
           <IconReload style={{ position: 'absolute' }} />
         </Table.Th>

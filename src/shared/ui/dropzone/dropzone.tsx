@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 import type { FC } from 'react'
 
 import { Group, rem, Text } from '@mantine/core'

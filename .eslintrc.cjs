@@ -71,16 +71,7 @@ module.exports = {
         'endOfLine': 'auto',
       },
     ],
-    'no-magic-numbers': [
-      'error',
-      {
-        'ignore': [
-          0,
-          1,
-          -1,
-        ],
-      },
-    ],
+    'no-magic-numbers': 'off',
     'no-shadow': 'off',
     'camelcase': 'off',
     'no-param-reassign': ['error', { 'props': true, 'ignorePropertyModificationsFor': ['state'] }],

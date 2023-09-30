@@ -17,9 +17,9 @@ import { DetailModalBody } from './detailModalBody'
 import { ArchiveFilters } from './requestsFilters.tsx'
 
 const columns = [
-  { direction: 'date', label: 'Дата' },
-  { direction: 'comment', label: 'Комментарий' },
-  { direction: 'bidStatus', label: 'Статус обработки заявки' },
+  { direction: 'request_date', label: 'Дата' },
+  { direction: 'request_comment', label: 'Комментарий' },
+  { direction: 'request_processed', label: 'Статус обработки заявки' },
 ]
 
 export const RequestsPage: FC = () => {
@@ -27,7 +27,7 @@ export const RequestsPage: FC = () => {
 
   const filters = useSelector(getFilters)
 
-  const { data: requests, isError, isLoading } = useGetRequestsQuery(filters)
+  const { data: requests, isError, isLoading, refetch } = useGetRequestsQuery(filters)
 
   if (isLoading) {
     return <Loader />
@@ -38,7 +38,7 @@ export const RequestsPage: FC = () => {
   }
 
   if (requests) {
-    const totalItems = requests.length
+    const totalItems = requests.total
 
     const changeSort = (newSort?: string): void => {
       dispatch(recordsActions.changeFilter({ first_record: 1, sort: newSort }))
@@ -55,8 +55,13 @@ export const RequestsPage: FC = () => {
         <Title order={1}>Журнал заявки</Title>
         <ArchiveFilters />
         <Table>
-          <TableHeader changeSort={changeSort} columns={columns} sort={filters.sort} />
-          <TableBody modalBody={DetailModalBody} modalTitle="Заявка" rows={requests} />
+          <TableHeader
+            changeSort={changeSort}
+            columns={columns}
+            refetch={refetch}
+            sort={filters.sort}
+          />
+          <TableBody modalBody={DetailModalBody} modalTitle="Заявка" rows={requests.items} />
         </Table>
         {!!totalItems && (
           <AppPagination

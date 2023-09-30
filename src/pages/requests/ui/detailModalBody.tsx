@@ -1,7 +1,7 @@
-import type { FC } from 'react'
+import type { ChangeEvent, FC } from 'react'
 import { useEffect, useState } from 'react'
 
-import { Box, Button, Divider, Flex, Text } from '@mantine/core'
+import { Box, Button, Divider, Flex, Input, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 
 import { File } from '@/entities/file'
@@ -37,6 +37,7 @@ export const DetailModalBody: FC<RequestType> = props => {
     update(editedData)
     off()
   }
+
   const removeFile = (data: string): void => {
     setEditedData(prev => ({ ...prev, files: prev.files.filter(file => file.file_data !== data) }))
   }
@@ -54,6 +55,10 @@ export const DetailModalBody: FC<RequestType> = props => {
 
       reader.readAsDataURL(file)
     })
+  }
+
+  const changeCommentHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+    setEditedData(prev => ({ ...prev, request_comment: e.target.value }))
   }
 
   return (
@@ -77,9 +82,11 @@ export const DetailModalBody: FC<RequestType> = props => {
             </Button>
           </Flex>
         ) : (
-          <Button color="orange" variant="outline" onClick={on}>
-            Редактировать
-          </Button>
+          request_processed && (
+            <Button color="orange" variant="outline" onClick={on}>
+              Редактировать
+            </Button>
+          )
         )}
       </Flex>
       <Flex gap="md" mb="2rem">
@@ -95,6 +102,7 @@ export const DetailModalBody: FC<RequestType> = props => {
         {editMode
           ? editedData.files.map(file => (
               <File
+                key={file.file_data}
                 data={file.file_data}
                 editMode={editMode}
                 name={file.file_name}
@@ -102,14 +110,23 @@ export const DetailModalBody: FC<RequestType> = props => {
               />
             ))
           : files.map(file => (
-              <File data={file.file_data} editMode={editMode} name={file.file_name} />
+              <File
+                key={file.file_data}
+                data={file.file_data}
+                editMode={editMode}
+                name={file.file_name}
+              />
             ))}
       </Flex>
 
       {editMode && <AppDropzone onDrop={onDropHandler} />}
 
       <Box opacity={0.5}>Примечание</Box>
-      <Box>{request_comment}</Box>
+      {editMode ? (
+        <Input value={editedData.request_comment} onChange={changeCommentHandler} />
+      ) : (
+        <Box>{request_comment}</Box>
+      )}
     </Box>
   )
 }

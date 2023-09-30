@@ -30,7 +30,7 @@ export const ArchivePage: FC = () => {
 
   const filters = useSelector(getFilters)
 
-  const { data: records, isError, isLoading } = useGetArchiveQuery(filters)
+  const { data: records, isError, isLoading, refetch } = useGetArchiveQuery(filters)
 
   if (isLoading) {
     return <Loader />
@@ -41,7 +41,7 @@ export const ArchivePage: FC = () => {
   }
 
   if (records) {
-    const totalItems = records.length
+    const totalItems = records.total
 
     const changeSort = (newSort?: string): void => {
       dispatch(archiveActions.changeFilter({ first_record: 1, sort: newSort }))
@@ -58,8 +58,13 @@ export const ArchivePage: FC = () => {
         <Title order={1}>Архив заявки</Title>
         <ArchiveFilters />
         <Table>
-          <TableHeader changeSort={changeSort} columns={columns} sort={filters.sort} />
-          <TableBody modalBody={DetailModalBody} modalTitle="Запись" rows={records} />
+          <TableHeader
+            changeSort={changeSort}
+            columns={columns}
+            refetch={refetch}
+            sort={filters.sort}
+          />
+          <TableBody modalBody={DetailModalBody} modalTitle="Запись" rows={records.items} />
         </Table>
         {!!totalItems && (
           <AppPagination

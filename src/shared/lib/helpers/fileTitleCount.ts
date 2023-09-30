@@ -1,5 +1,4 @@
 export const fileTitleCount = (count: number): string => {
-  // eslint-disable-next-line no-magic-numbers
   if (count.toString().at(-1) === '1' && count !== 11) return 'файл'
   if (
     count.toString().at(-1) === '2' ||

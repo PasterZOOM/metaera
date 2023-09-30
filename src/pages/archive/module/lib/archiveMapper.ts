@@ -11,7 +11,7 @@ export const archiveRecordMapper = (
     id: record.request_guid,
     item: record,
     row: [
-      record.record_date,
+      record.document_date,
       recordStatusDictionary[record.record_status],
       record.document_number,
       documentTypeDictionary[record.document_type],
